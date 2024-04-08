@@ -758,7 +758,7 @@ def main():
      pygame.quit()
 
 
-start = 1
+start = 1 
 level = 1
 reset()
 main()
