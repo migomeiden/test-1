@@ -694,10 +694,10 @@ def draw(screen, img3, hai1, kou1, kou2, kou3, ene1, ene2, ene3, ene4, ene5,
         screen.blit(ene5, ( ex5, ey5))           
                
         
-        if rootk1 < 50 :
+        if rootk1 < 45 :
             gameover = 1
 
-        if rootk2 < 50 :
+        if rootk2 < 45 :
              gameover = 1
         
         if osu == 0:
@@ -1095,8 +1095,8 @@ def main():
         root3 = math.sqrt((ex3 - px)**2 + (py - ey3)**2)
         root4 = math.sqrt((ex4 - px)**2 + (py - ey4)**2)
         root5 = math.sqrt((ex5 - px)**2 + (py - ey5)**2)
-        rootk1 = math.sqrt((x - (kx1 - 20))**2 + ((ky1 - 40) - y)**2)
-        rootk2 = math.sqrt((x - (kx2 - 20))**2 + ((ky2 - 40) - y)**2)
+        rootk1 = math.sqrt((x - (kx1 - 20))**2 + ((ky1 - 20) - y)**2)
+        rootk2 = math.sqrt((x - (kx2 - 20))**2 + ((ky2 - 20) - y)**2)
         
         score_image = font.render (str(sco) , True ,pygame.Color("white"))
         score_image_game = font.render (("gameover") , True ,pygame.Color("red"))
