@@ -15,53 +15,34 @@ setumei_anime = 0
 
 x_image = 100
 y_image = -100
-x_image_ufo = 450
-y_image_ufo = -290
-x_image_hikari = 450
-y_image_hikari = -170
-y_waku_scale = 200
-command = 0
-command_time = 0
 
-     
-def drew_back_setumei (screen,waku, rule, move_rule, attack_image, attack_rule, yajirusi_migi, yajirusi_hidari, 
-                       shasin_clear, shasin_kougeki, shasin_bakuhatu, batu_button, shasin_kougeki_si, shasin_teki_jimenn, shasin_game_over, haikei_ufo, hikari):   
-        global setumei_anime,x_image,y_image, setumei_button, alpha, delta, x_image_ufo, y_image_ufo, x_image_hikari, y_image_hikari, y_waku_scale
+
+def drew_back_setumei (screen,waku, rule, move_rule, attack_image, attack_rule, yajirusi_migi, yajirusi_hidari, shasin_clear, shasin_kougeki, shasin_bakuhatu, batu_button):   
+        global setumei_anime,x_image,y_image, setumei_button
         
         font_game = pygame.font.Font("テキスト/DotGothic16-Regular.ttf " , 50)
-        yajirusi_hidari.set_alpha( alpha) #imageの透明度を設定
-        yajirusi_migi.set_alpha( alpha) #imageの透明度を設定
-        escape = font_game.render (("escape") , True ,pygame.Color("white")) 
-        escape = pygame.transform.scale(escape,( 50, 30))
         
         if setumei_anime == 0 :
  
                  
                   
               #  ルール説明のボード
-                waku = pygame.transform.scale(waku,( 1000, y_waku_scale))
-                hikari = pygame.transform.scale(hikari,( 300, 80))  
+                waku = pygame.transform.scale(waku,( 1000, 600))
+                  
                   
                 y_image += 10       #  動かくデイ
-                y_image_ufo += 10
-                y_image_hikari += 10
-                y_waku_scale += 20
-                
-                screen.blit(hikari, (x_image_hikari, y_image_hikari))
-                screen.blit(haikei_ufo, ( x_image_ufo, y_image_ufo))
+                  
+                  
                 screen.blit(waku, ( x_image, y_image))
-                
                 pygame.display.update()
 
-                if  y_image <= 100 and y_waku_scale <=600:     # 来てほしいとこまできてなかったら？
+                if  y_image <= 100   :    # 来てほしいとこまできてなかったら？
                 
                     return
                 
                 else :
-
-                        setumei_anime = 1
-                    
-
+                    setumei_anime = 1
+        
       
       
        
@@ -79,10 +60,10 @@ def drew_back_setumei (screen,waku, rule, move_rule, attack_image, attack_rule, 
             
             
         screen.blit(batu_button, ( 1030,130)) 
-        screen.blit(escape, (1030, 165))
+        
         
         if setumei_button == 1:
-
+        
             screen.blit(rule, (270, 260))
             screen.blit(move_rule, (348, 510))
             screen.blit(attack_image, (755, 290))
@@ -107,25 +88,10 @@ def drew_back_setumei (screen,waku, rule, move_rule, attack_image, attack_rule, 
         
         if setumei_button == 3:
             
-            rule_font_4 = font_game.render (("６０秒間耐えればゲームクリア ^ ^") , True ,pygame.Color("white"))
-            rule_font_4 = pygame.transform.scale(rule_font_4,(740, 80))
-            
             screen.blit(yajirusi_migi, (1030, 375))
             screen.blit(yajirusi_hidari, (110, 375))
             screen.blit(shasin_clear, (310, 175))
-            screen.blit(rule_font_4, (230, 550))
             
-        if setumei_button == 4:
-            
-            rule_font_5 = font_game.render (("敵が地面に来るか、敵の攻撃に当たるとゲームオーバー ; ;") , True ,pygame.Color("white")) 
-            rule_font_5 = pygame.transform.scale(rule_font_5,(750, 70))
-            screen.blit(shasin_kougeki_si, (395, 490))
-            
-            screen.blit(shasin_teki_jimenn, (695, 490))
-            screen.blit(shasin_game_over, (310, 175))
-            screen.blit(rule_font_5, (230, 590))
-            screen.blit(yajirusi_hidari, (110, 375))
-        
         pygame.display.update()
 
 
@@ -289,8 +255,7 @@ def reset():
     y_image = -100
 
 
-def draw_back(screen, easy, hard, ex, yajirusi, setumei, waku, rule, move_rule, attack_image, attack_rule, yajirusi_migi, yajirusi_hidari, 
-              shasin_clear, shasin_kougeki, shasin_bakuhatu, batu_button, shasin_kougeki_si, shasin_teki_jimenn, shasin_game_over, haikei_ufo, hikari):
+def draw_back(screen, easy, hard, ex, yajirusi, setumei, waku, rule, move_rule, attack_image, attack_rule, yajirusi_migi, yajirusi_hidari, shasin_clear, shasin_kougeki, shasin_bakuhatu, batu_button):
     global level, alpha, toumei1, setumei_button, x_image, y_image, setumei_anime
     
     
@@ -348,20 +313,17 @@ def draw_back(screen, easy, hard, ex, yajirusi, setumei, waku, rule, move_rule, 
     if level == -1:
         
 
-        drew_back_setumei(screen,waku, rule, move_rule, attack_image, attack_rule, yajirusi_migi, yajirusi_hidari, 
-                          shasin_clear, shasin_kougeki, shasin_bakuhatu, batu_button, shasin_kougeki_si, shasin_teki_jimenn, shasin_game_over, haikei_ufo, hikari)
+        drew_back_setumei(screen,waku, rule, move_rule, attack_image, attack_rule, yajirusi_migi, yajirusi_hidari, shasin_clear, shasin_kougeki, shasin_bakuhatu, batu_button)
     
     pygame.display.update()
 
 
 def move_back(screen, easy, hard, ex, waku):
-    global start, mouse_x, mouse_y, mouse_pos, level ,clock, alpha, setumei_button, x_image, y_image, setumei_anime, setumei_button, x_image_ufo, y_image_ufo, x_image_hikari, y_image_hikari, y_waku_scale
+    global start, mouse_x, mouse_y, mouse_pos, level ,clock, alpha, setumei_button, x_image, y_image, setumei_anime, setumei_button
     
     reset()
     key = pygame.key.get_pressed()
     FPS = 60
-    renzokubousi_migi = 0
-    renzokubousi_hidari = 0
     if level == 1 :
     
         if key[pygame.K_RIGHT]:
@@ -425,7 +387,6 @@ def move_back(screen, easy, hard, ex, waku):
         if setumei_button == 1 and key[pygame.K_RIGHT]:
             pygame.time.wait(200)  
             setumei_button = 2         
-            renzokubousi_migi = 1
             pygame.event.clear()
             return
             
@@ -433,24 +394,13 @@ def move_back(screen, easy, hard, ex, waku):
             
             if key[pygame.K_LEFT]:
                 pygame.time.wait(200)
-                
-                if renzokubousi_hidari == 0:
-                    setumei_button = 1
-                    renzokubousi_hidari = 1
-                else:    
-                    renzokubousi_hidari = 0
-                    
+                setumei_button = 1
                 pygame.event.clear()
                 return
                 
             if key[pygame.K_RIGHT]:
                 pygame.time.wait(200)  
-                if renzokubousi_migi == 0:
-                    setumei_button = 3
-                    renzokubousi_migi = 1
-                else:    
-                    renzokubousi_migi = 0
-                    
+                setumei_button = 3
                 pygame.event.clear()
                 return
             
@@ -458,47 +408,9 @@ def move_back(screen, easy, hard, ex, waku):
             
             if key[pygame.K_LEFT]:
                 pygame.time.wait(200)
-                
-                if renzokubousi_hidari == 0:
-                    setumei_button = 2
-                    renzokubousi_hidari = 1
-                else:    
-                    renzokubousi_hidari = 0
-                    
+                setumei_button = 2
                 pygame.event.clear()
                 return
-            
-            if key[pygame.K_RIGHT]:
-                pygame.time.wait(200)
-                
-                if renzokubousi_migi == 0:
-                    setumei_button = 4
-                    renzokubousi_migi = 1
-                else:    
-                    renzokubousi_migi = 0
-                    
-                pygame.event.clear()
-                return
-            
-        if setumei_button == 4:
-            
-            if key[pygame.K_LEFT]:
-                pygame.time.wait(200)
-                
-                if renzokubousi_hidari == 0:
-                    setumei_button = 3
-                    renzokubousi_hidari = 1
-                else:    
-                    renzokubousi_hidari = 0
-                    
-                pygame.event.clear()
-                return
-            
-      #      if key[pygame.K_RIGHT]:
-      #          setumei_button = 5
-      #          pygame.event.clear()
-                
- 
             
         
     for event in pygame.event.get():   
@@ -522,11 +434,6 @@ def move_back(screen, easy, hard, ex, waku):
 
                     x_image = 100
                     y_image = -100
-                    x_image_ufo = 450
-                    y_image_ufo = -290
-                    x_image_hikari = 450
-                    y_image_hikari = -170
-                    y_waku_scale = 200
                     
                     setumei_anime = 0
                     
@@ -1017,7 +924,7 @@ def move(screen, root1, root2, root3, root4, root5, rootk1, rootk2, yajirusi):  
   
             
 def main():
-     global x, y, px, py, kx1, ky1, kx2, ky2, mxky, osu, teki1, teki2, ex1, ey1, ex2, ey2, ex3, ey3, ex4, ey4, ex5, ey5, ene3x, ene4x, ene5x, gameover, sco, scox, scoy, cou, count1, start, mouse_x, mouse_y, mouse_pos, level, time, time_finish, time_print,clock, alpha, delta, setumei_anime, setumei_button, x_image, y_image, x_image_hikari, y_image_hikari, x_image_ufo, y_image_ufo, y_waku_scale, command, command_time
+     global x, y, px, py, kx1, ky1, kx2, ky2, mxky, osu, teki1, teki2, ex1, ey1, ex2, ey2, ex3, ey3, ex4, ey4, ex5, ey5, ene3x, ene4x, ene5x, gameover, sco, scox, scoy, cou, count1, start, mouse_x, mouse_y, mouse_pos, level, time, time_finish, time_print,clock, alpha, delta
      pygame.init()
      clock = pygame.time.Clock()
      screen = pygame.display.set_mode(( 1200, 800))    # 1530 790
@@ -1047,11 +954,7 @@ def main():
      shasin_clear = pygame.image.load("画像/スクリーンショット ゲームクリア.png")
      shasin_kougeki = pygame.image.load("画像/スクリーンショット 攻撃（自）.png")
      shasin_bakuhatu = pygame.image.load("画像/スクリーンショット 爆発エフェクト.png")
-     shasin_kougeki_si = pygame.image.load("画像/スクリーンショット 攻撃(死).png")
-     shasin_teki_jimenn = pygame.image.load("画像/スクリーンショット 敵　到達.png")
-     shasin_game_over = pygame.image.load("画像/スクリーンショット ゲームオーバー.png")
      batu_button = pygame.image.load("画像/×ボタン.png")
-     hikari = pygame.image.load("画像/hikari.png")
      img3 = pygame.transform.scale(img3,( 100, 90))
      hai1 = pygame.transform.scale(hai1,( 1200, 800))
      kou1 = pygame.transform.scale(kou1,( 100, 90))
@@ -1077,15 +980,10 @@ def main():
      shasin_clear = pygame.transform.scale(shasin_clear,( 575, 350))
      shasin_kougeki = pygame.transform.scale(shasin_kougeki,( 120, 100))
      shasin_bakuhatu = pygame.transform.scale(shasin_bakuhatu,( 120, 100))
-     shasin_kougeki_si = pygame.transform.scale(shasin_kougeki_si,( 120, 100))
-     shasin_teki_jimenn = pygame.transform.scale(shasin_teki_jimenn,( 120, 100))
-     shasin_game_over = pygame.transform.scale(shasin_game_over,( 575, 300))
-     haikei_ufo = pygame.transform.scale(ene1,( 300, 150))
 
      font = pygame.font.Font("テキスト/DotGothic16-Regular.ttf " , 100)
      font_keypress = pygame.font.Font("テキスト/DotGothic16-Regular.ttf ", 50)  
     
-
      
      while True:
         FPS = 60
@@ -1119,7 +1017,9 @@ def main():
         else:
             time_image = font.render (("60") , True, pygame.Color("white"))
             
-            
+        
+        
+
         #計算
         alpha += delta
         if alpha <= 0 or alpha >=255:
@@ -1167,62 +1067,8 @@ def main():
         
         key_pressed = pygame.key.get_pressed()
         if key_pressed[pygame.K_ESCAPE]:
-            
-            if level == -1:
-
-                    x_image = 100
-                    y_image = -100
-                    x_image_ufo = 450
-                    y_image_ufo = -290
-                    x_image_hikari = 450
-                    y_image_hikari = -170
-                    y_waku_scale = 200
-                    
-                    setumei_anime = 0
-                    
-                    level = 0
-                    
-                    setumei_button = 1
-                
-            pygame.event.clear()
-            
-            
-        if command_time <= 0:
-            command = 0
-            command_time
-            
-        command_time -= 1   
-            
-        if key_pressed[pygame.K_m] and command == 0 :
-            command = 1
-            command_time = 70
-            
-            
-        if key_pressed[pygame.K_e] and command == 1 :
-            command = 2
-            
-            
-        if key_pressed[pygame.K_i] and command == 2 :
-            command = 3
-            
-            
-        if key_pressed[pygame.K_d] and command == 3 :
-            command = 4
-            
-            
-        if key_pressed[pygame.K_e] and command == 4 :
-            command = 5
-            
-            
-        if key_pressed[pygame.K_n] and command == 5 :
-            command = 6
-            
-            
-            
-        if command == 6:
             break
         
-                
         if gameover == 1:
             
             if key_pressed[pygame.K_SPACE]:
@@ -1237,8 +1083,7 @@ def main():
                 time_finish = time_finish / 1000
             
         if start == 1:
-            draw_back(screen, easy, hard, ex, yajirusi, setumei, waku, rule, move_rule, attack_image, attack_rule, yajirusi_migi, yajirusi_hidari, 
-                      shasin_clear, shasin_kougeki, shasin_bakuhatu, batu_button, shasin_kougeki_si, shasin_teki_jimenn, shasin_game_over, haikei_ufo, hikari)
+            draw_back(screen, easy, hard, ex, yajirusi, setumei, waku, rule, move_rule, attack_image, attack_rule, yajirusi_migi, yajirusi_hidari, shasin_clear, shasin_kougeki, shasin_bakuhatu, batu_button)
             move_back(screen, easy, hard, ex, waku)
             
             
