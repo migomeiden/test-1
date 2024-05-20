@@ -192,7 +192,7 @@ def  becomebig (screen,score_image):
                   
                 screen.blit(score_image, ( scox, scoy))
 
-
+ 
 def limit(score_image_game):
     global time, time_finish, gameover
     
